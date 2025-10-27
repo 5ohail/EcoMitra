@@ -303,8 +303,8 @@ export default function EcoMitraPitchPage() {
             <h3 className="text-3xl font-serif font-bold mb-4">Ready to see Eco Mitra in action?</h3>
             <p className="text-gray-700 mb-6">We have an interactive prototype and pilot-ready stack. Book a 15-minute demo and let us show the impact.</p>
             <div className="flex items-center justify-center gap-4">
-              <a href="#" className="px-8 py-4 rounded-full bg-[#00A86B] text-white font-semibold">Book Demo</a>
-              <a href="#" className="px-6 py-3 rounded-full border border-[#00A86B] text-[#007D4C]">Request Deck</a>
+              <a href="tel:+917878364087" className="px-8 py-4 rounded-full bg-[#00A86B] text-white font-semibold">Book Demo</a>
+              <a href="/prototype" className="px-6 py-3 rounded-full border border-[#00A86B] text-[#007D4C]">Request Deck</a>
             </div>
 
             <div className="mt-8 text-sm text-gray-500">Presented by <strong>Team Tech Fusion</strong> • iStart Ideathon</div>
