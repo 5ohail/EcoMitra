@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600;700&display=swap');
+@import "tailwindcss";
+*{
+    scroll-behavior: smooth;
+}
+*::selection{
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+}
+.nav{
+    transition: 0.4s linear;
+}
+.nav::after{
+    content: '';
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: -1;
+    height: 5vh;
+    width: 0;
+    background-color: #009966;
+    transition: 0.7s ease-in-out;
+}
+.nav:hover{
+     color: #fff;
+}
+.nav:hover::after{
+    width: 6.2vw;
+   
+}
