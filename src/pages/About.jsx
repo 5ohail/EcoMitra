@@ -129,7 +129,7 @@ export default function EcoMitraPitchPage() {
   },
   {
     name: 'Yatharth Gour',
-    role: 'Design Lead',
+    role: 'Designing | Content Creation',
     img: 'https://media.licdn.com/dms/image/v2/D5603AQH_vv2kk0yhKg/profile-displayphoto-scale_400_400/B56Zg2OwIIG0Ao-/0/1753256496542?e=1762992000&v=beta&t=pumeU97yyKlrRikeNPmxjyviovggVMmAVRIL4aaPm2Y',
     description: 'Yatharth is our creative visionary. As the Design Lead, he translates complex ideas into intuitive, beautiful, and user-centric experiences that define our brand.'
   },
