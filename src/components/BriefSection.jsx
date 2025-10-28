@@ -14,6 +14,9 @@ function InteractiveModel() {
   return <primitive object={scene} scale={4} position={[0, 0, 0]} />;
 }
 
+// Preload the model
+useGLTF.preload("/Ecomitra1.glb");
+
 function ContinuousSlides() {
   const containerRef = useRef(null);
 
@@ -54,6 +57,8 @@ function ContinuousSlides() {
     const horizontalContainer = containerRef.current.querySelector(".horizontal-container");
     const slides = gsap.utils.toArray(".slide");
     const progressBar = containerRef.current.querySelector(".progress-bar");
+    
+    // This logic is already responsive, no changes needed!
     const totalWidth = horizontalContainer.scrollWidth - window.innerWidth;
 
     const mainScroll = gsap.to(horizontalContainer, {
@@ -65,11 +70,12 @@ function ContinuousSlides() {
         end: () => `+=${totalWidth}`,
         scrub: 1,
         pin: true,
-        invalidateOnRefresh: true,
+        invalidateOnRefresh: true, // This is key for responsiveness
         onUpdate: (self) => gsap.set(progressBar, { scaleX: self.progress }),
       },
     });
 
+    // These animations are also fine, as they animate non-layout properties
     slides.forEach((slide) => {
       const title = slide.querySelector(".slide-title");
       const desc = slide.querySelector(".slide-description");
@@ -105,18 +111,16 @@ function ContinuousSlides() {
           {slides.map((slide, idx) => (
             <div
               key={idx}
-              className={`slide relative grid h-screen w-screen flex-shrink-0 grid-cols-2 items-center px-24 ${slide.color}`}
-            >
-              {/* Left Text */}
-              <div className="pr-12 z-10">
+              className={`slide relative grid h-screen w-screen flex-shrink-0 grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 items-center px-6 md:px-12 lg:px-24 ${slide.color}`} >
+              <div className="lg:pr-12 z-10 text-center lg:text-left">
                 <h2
-                  className="slide-title mb-6 text-6xl font-bold bg-gradient-to-r from-emerald-700 to-emerald-400 bg-clip-text text-transparent drop-shadow-lg"
+                  className="slide-title mb-4 lg:mb-6 text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 to-emerald-400 bg-clip-text text-transparent drop-shadow-lg"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {slide.title}
                 </h2>
                 <p
-                  className="slide-description text-lg leading-relaxed text-gray-700"
+                  className="slide-description text-base md:text-lg leading-relaxed text-gray-700"
                   style={{ fontFamily: "'Manrope', sans-serif" }}
                 >
                   {slide.description}
@@ -124,8 +128,8 @@ function ContinuousSlides() {
               </div>
 
               {/* Right Visual */}
-              <div className="flex items-center justify-center" style={{ perspective: "1000px" }}>
-                <div className="img-container h-[70vh] w-full rounded-2xl shadow-2xl overflow-hidden">
+              <div className="flex items-center justify-center w-full" style={{ perspective: "1000px" }}> {/* CHANGED */}
+                <div className="img-container h-[45vh] lg:h-[70vh] w-full rounded-2xl shadow-2xl overflow-hidden"> {/* CHANGED */}
                   {slide.model ? (
                     <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
                       <Suspense fallback={null}>
@@ -134,7 +138,6 @@ function ContinuousSlides() {
                         
                         <InteractiveModel />
 
-                        {/* Removed the 'background' prop here */}
                         <Environment 
                           files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/pine_picnic_4k.hdr" 
                         />
@@ -168,5 +171,3 @@ function ContinuousSlides() {
 }
 
 export default ContinuousSlides;
-
-useGLTF.preload("/Ecomitra1.glb");

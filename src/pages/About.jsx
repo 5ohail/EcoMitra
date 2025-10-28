@@ -2,6 +2,7 @@ import React, { useRef, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ReactLenis } from 'lenis/react';
+import { useNavigate } from 'react-router-dom';
 
 // Professional, futuristic single-file page for iStart Ideathon — Team Tech Fusion
 // No Three.js. GSAP + ScrollTrigger + Lenis only. Tailwind utility classes assumed.
@@ -9,11 +10,16 @@ import { ReactLenis } from 'lenis/react';
 gsap.registerPlugin(ScrollTrigger);
 
 const Fonts = () => (
-  <style>{`\n    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap');\n    .font-sans{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}\n    .font-serif{font-family:'Playfair Display',serif}\n  `}</style>
+  <style>{`
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap');
+    .font-sans{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    .font-serif{font-family:'Playfair Display',serif}
+  `}</style>
 );
 
 export default function EcoMitraPitchPage() {
   const rootRef = useRef(null);
+  const navigate = useNavigate();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -57,17 +63,22 @@ export default function EcoMitraPitchPage() {
 
       // Roadmap horizontal pin + progress scrub
       const roadmap = document.querySelector('.roadmap');
-      if (roadmap) {
-        gsap.to('.roadmap-track', {
-          xPercent: -50,
+      const roadmapContainer = document.querySelector('.roadmap .max-w-6xl');
+      const track = document.querySelector('.roadmap-track');
+
+      if (roadmap && roadmapContainer && track) {
+        gsap.to(track, {
+          // Calculate the exact distance to scroll to the end
+          x: () => -(track.scrollWidth - roadmapContainer.clientWidth),
           ease: 'none',
           scrollTrigger: {
             trigger: roadmap,
             start: 'top top',
-            end: '+=1000',
+            end: '+=1000', // User's original scroll duration
             scrub: true,
             pin: true,
             anticipatePin: 1,
+            invalidateOnRefresh: true, // Recalculate on resize {/* CHANGED */}
           },
         });
       }
@@ -111,33 +122,38 @@ export default function EcoMitraPitchPage() {
   const team = [
   {
     name: 'Vinod Gawariya',
-    role: 'Team Leader | AIML Engineer', // Updated role
+    role: 'Team Leader | AIML Engineer',
     img: 'https://media.licdn.com/dms/image/v2/D4E03AQE3Qv9ncY2zYg/profile-displayphoto-shrink_800_800/B4EZeQrog9HsAc-/0/1750479053262?e=1762992000&v=beta&t=bAm6B6nEXDUmxzINpRImwv1nEPcEsC9imvI7xjsK3m4',
-    description: 'Vinod is the architect of our intelligence, specializing in developing and deploying advanced machine learning models to drive data-driven insights.'
+    description: 'Vinod is the architect of our intelligence, specializing in developing and deploying advanced machine learning models to drive data-driven insights.',
+    linkedin: 'https://www.linkedin.com/in/vinod-gawariya-233505331/'
   },
   {
     name: 'Sohail Ansari',
-    role: 'Co-leader | Fullstack Developer', // Updated role
+    role: 'Co-leader | Fullstack Developer',
     img: 'https://media.licdn.com/dms/image/v2/D4D03AQH2hQzRYAlJAQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1729418868213?e=1762992000&v=beta&t=XbrpGpPzOIjJL5VQAtqAocHg1N7vi4D9ATagPeRKXt0',
-    description: 'Sohail is the backbone of our platform. A versatile fullstack developer, he masters both frontend elegance and backend robustness to bring our application to life.'
+    description: 'Sohail is the backbone of our platform. A versatile fullstack developer, he masters both frontend elegance and backend robustness to bring our application to life.',
+    linkedin: 'https://www.linkedin.com/in/sohailansari163/'
   },
   {
     name: 'Tanisha Goyal',
     role: 'Presentation | Marketing',
     img: 'https://media.licdn.com/dms/image/v2/D4D03AQGZcuswCuUm-Q/profile-displayphoto-crop_800_800/B4DZfaVlivGgAI-/0/1751714784282?e=1762992000&v=beta&t=y4835K9WLVubDB87l2W8vlCixK5Tc5ZCAkh1w0cok-Y',
-    description: 'Tanisha is our chief storyteller. She crafts our narrative and leads marketing efforts, brilliantly communicating our vision and value to our global audience.'
+    description: 'Tanisha is our chief storyteller. She crafts our narrative and leads marketing efforts, brilliantly communicating our vision and value to our global audience.',
+    linkedin: 'https://www.linkedin.com/in/tanisha-goyal-3bb4b6373/'
   },
   {
     name: 'Yatharth Gour',
     role: 'Designing | Content Creation',
-    img: 'https://media.licdn.com/dms/image/v2/D5603AQH_vv2kk0yhKg/profile-displayphoto-scale_400_400/B56Zg2OwIIG0Ao-/0/1753256496542?e=1762992000&v=beta&t=pumeU97yyKlrRikeNPmxjyviovggVMmAVRIL4aaPm2Y',
-    description: 'Yatharth is our creative visionary. As the Design Lead, he translates complex ideas into intuitive, beautiful, and user-centric experiences that define our brand.'
+    img: '/yatharth.jpg',
+    description: 'Yatharth is our creative visionary. As the Design Lead, he translates complex ideas into intuitive, beautiful, and user-centric experiences that define our brand.',
+    linkedin: 'https://www.linkedin.com/in/yatharth-hargour-a00615376/'
   },
   {
     name: 'Bhavesh Dangi',
     role: 'Frontend Developer',
     img: 'https://media.licdn.com/dms/image/v2/D5603AQHkcRV52u487g/profile-displayphoto-shrink_800_800/B56ZZHLjsgHQAg-/0/1744950936360?e=1762992000&v=beta&t=pvuPYitBY0bxZLIw69NxVDZCBj8mS10G-Gl_a7MR7D8',
-    description: 'Bhavesh is the craftsman of our user interface. A dedicated frontend developer, he transforms designs into pixel-perfect, responsive, and engaging web experiences.'
+    description: 'Bhavesh is the craftsman of our user interface. A dedicated frontend developer, he transforms designs into pixel-perfect, responsive, and engaging web experiences.',
+    linkedin: 'https://www.linkedin.com/in/bhavesh-dangi-b79b8a360/'
   },
 ];
 
@@ -172,7 +188,7 @@ export default function EcoMitraPitchPage() {
         <section id="problem" className="panel py-24 px-6 md:px-12 bg-white">
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="reveal">
-              <h2 className="text-3xl font-serif font-bold mb-4">The Problem</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">The Problem</h2> {/* CHANGED */}
               <p className="text-gray-700 leading-relaxed">People and organizations want to reduce carbon footprint but lack simple, actionable, and trustworthy tools. Existing solutions are either too technical or not personalized enough, causing poor adoption.</p>
 
               <ul className="mt-6 space-y-3 text-gray-700">
@@ -195,7 +211,7 @@ export default function EcoMitraPitchPage() {
         <section id="solution" className="panel py-24 px-6 md:px-12">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="reveal">
-              <h2 className="text-3xl font-serif font-bold mb-4">Our Solution</h2>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Our Solution</h2> {/* CHANGED */}
               <p className="text-gray-700 leading-relaxed">Eco Mitra is a friendly, high-fidelity carbon intelligence platform that combines automatic data ingestion, behavior-driven nudges, and clear visualizations to help users reduce emissions with confidence.</p>
 
               <ol className="mt-6 space-y-3 text-gray-700">
@@ -216,7 +232,7 @@ export default function EcoMitraPitchPage() {
         {/* FEATURES */}
         <section id="features" className="features panel py-24 px-6 md:px-12 bg-gradient-to-b from-white to-[#F7FFF8]">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-serif font-bold mb-8 text-center">Key Features</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-center">Key Features</h2> {/* CHANGED */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { title: 'Automatic Data Sync', desc: 'Connect once — auto-sync trips, bills, and consumption.' },
@@ -238,18 +254,18 @@ export default function EcoMitraPitchPage() {
         {/* IMPACT METRICS */}
         <section className="panel py-20 px-6 md:px-12">
           <div className="max-w-5xl mx-auto text-center">
-            <h3 className="text-2xl font-serif font-bold mb-6">Projected Impact</h3>
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-6">Projected Impact</h3> {/* CHANGED */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="reveal bg-white p-6 rounded-xl shadow-sm">
-                <div className="text-4xl font-bold text-[#00A86B]">85%</div>
+                <div className="text-3xl sm:text-4xl font-bold text-[#00A86B]">85%</div> {/* CHANGED */}
                 <div className="mt-2 text-gray-600">Avg. engagement increase with gamified nudges</div>
               </div>
               <div className="reveal bg-white p-6 rounded-xl shadow-sm">
-                <div className="text-4xl font-bold text-[#00A86B]">1.2Tg</div>
+                <div className="text-3xl sm:text-4xl font-bold text-[#00A86B]">1.2Tg</div> {/* CHANGED */}
                 <div className="mt-2 text-gray-600">CO₂e reduction potential/yr (scalable projections)</div>
               </div>
               <div className="reveal bg-white p-6 rounded-xl shadow-sm">
-                <div className="text-4xl font-bold text-[#00A86B]">Enterprise</div>
+                <div className="text-3xl sm:text-4xl font-bold text-[#00A86B]">Enterprise</div> {/* CHANGED */}
                 <div className="mt-2 text-gray-600">Tiered solutions for citizens, SMEs, and large orgs</div>
               </div>
             </div>
@@ -259,16 +275,18 @@ export default function EcoMitraPitchPage() {
         {/* ROADMAP */}
         <section className="roadmap panel py-20 px-6 md:px-12 bg-[#F3FBF4]">
           <div className="max-w-6xl mx-auto overflow-hidden">
-            <h3 className="text-2xl font-serif font-bold mb-8 text-center">Roadmap</h3>
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-8 text-center">Roadmap</h3> {/* CHANGED */}
             <div className="relative">
-              <div className="roadmap-track flex gap-8 w-[200%]">
+              <div className="roadmap-track flex gap-8 w-max"> {/* CHANGED */}
                 {[
                   { quarter: 'Q4 2025', items: ['MVP', 'Pilot partners', 'Core integrations'] },
                   { quarter: 'Q1 2026', items: ['Scale pilots', 'Team challenges', 'Mobile app'] },
                   { quarter: 'Q2 2026', items: ['Enterprise features', 'API marketplace'] },
                   { quarter: 'Q3 2026', items: ['Global partners', 'Certifications'] },
+                  // Added one more for a better scroll
+                  { quarter: 'Q4 2026', items: ['AI-driven insights', 'Policy simulation'] },
                 ].map((r, i) => (
-                  <div key={i} className="w-1/3 bg-white rounded-xl p-6 shadow-sm">
+                  <div key={i} className="w-[80vw] md:w-[45vw] lg:w-1/3 flex-shrink-0 bg-white rounded-xl p-6 shadow-sm"> {/* CHANGED */}
                     <div className="text-lg font-semibold text-[#00694F]">{r.quarter}</div>
                     <ul className="mt-3 text-gray-700 list-disc list-inside">
                       {r.items.map((it, idx) => <li key={idx}>{it}</li>)}
@@ -283,10 +301,10 @@ export default function EcoMitraPitchPage() {
         {/* TEAM */}
         <section id="team" className="team panel py-20 px-6 md:px-12">
           <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl font-serif font-bold mb-8 text-center">Meet Team Tech Fusion</h3>
+            <h3 className="text-3xl md:text-4xl font-serif font-bold mb-8 text-center">Meet Team Tech Fusion</h3> {/* CHANGED */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {team.map((m, i) => (
-                <div key={i} className="team-card bg-white rounded-2xl p-6 text-center shadow-sm">
+                <div key={i} className="team-card bg-white rounded-2xl p-6 text-center shadow-sm" onClick={()=>window.open(m.linkedin, "_blank", "noopener,noreferrer")}>
                   <img src={m.img} alt={m.name} className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-[#E8F7EE]" />
                   <h4 className="mt-4 font-semibold text-lg">{m.name}</h4>
                   <div className="text-sm text-gray-600">{m.role}</div>
@@ -300,9 +318,9 @@ export default function EcoMitraPitchPage() {
         {/* CTA */}
         <section id="cta" className="cta panel py-20 px-6 md:px-12 bg-gradient-to-r from-[#EAFBF0] to-white text-center">
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-3xl font-serif font-bold mb-4">Ready to see Eco Mitra in action?</h3>
+            <h3 className="text-3xl md:text-4xl font-serif font-bold mb-4">Ready to see Eco Mitra in action?</h3> {/* CHANGED */}
             <p className="text-gray-700 mb-6">We have an interactive prototype and pilot-ready stack. Book a 15-minute demo and let us show the impact.</p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4"> {/* CHANGED */}
               <a href="tel:+917878364087" className="px-8 py-4 rounded-full bg-[#00A86B] text-white font-semibold">Book Demo</a>
               <a href="/prototype" className="px-6 py-3 rounded-full border border-[#00A86B] text-[#007D4C]">Request Deck</a>
             </div>
