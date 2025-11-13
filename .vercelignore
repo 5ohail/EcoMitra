@@ -1,0 +1,5 @@
+_src/
+src/
+*.config
+*.md
+node_modules/
