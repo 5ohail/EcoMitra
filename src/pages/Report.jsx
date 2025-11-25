@@ -90,25 +90,25 @@ export default function Report() {
       <div className="max-w-7xl mx-auto">
         <header className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-[#004D39]">Eco Mitra — Reports</h1>
-            <p className="text-sm text-gray-600">Static sample metrics & charts for demo and presentation.</p>
+            <h1 className="text-3xl font-semibold tracking-tight text-gray-900">Eco Mitra — Reports</h1>
+            <p className="text-base text-gray-500 mt-1">Static sample metrics & charts for demo and presentation.</p>
           </div>
         </header>
 
         {/* Stat cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="stat-card bg-white rounded-lg p-4 shadow">
-            <div className="text-sm text-gray-500">Avg Daily Emission</div>
+          <div className="stat-card saas-card rounded-saas p-6 transition-all duration-300 hover:shadow-lg">
+            <div className="text-sm font-medium text-gray-500">Avg Daily Emission</div>
             <div className="text-2xl font-semibold text-[#00694F]">{avgDaily} kg CO₂</div>
           </div>
 
-          <div className="stat-card bg-white rounded-lg p-4 shadow">
-            <div className="text-sm text-gray-500">Weekly Energy</div>
+          <div className="stat-card saas-card rounded-saas p-6 transition-all duration-300 hover:shadow-lg">
+            <div className="text-sm font-medium text-gray-500">Weekly Energy</div>
             <div className="text-2xl font-semibold text-[#00694F]">{totalWeeklyEnergy} kWh</div>
           </div>
 
-          <div className="stat-card bg-white rounded-lg p-4 shadow">
-            <div className="text-sm text-gray-500">Active Devices</div>
+          <div className="stat-card saas-card rounded-saas p-6 transition-all duration-300 hover:shadow-lg  ">
+            <div className="text-sm font-medium text-gray-500">Active Devices</div>
             <div className="text-2xl font-semibold text-[#00694F]">{devices}</div>
           </div>
         </div>

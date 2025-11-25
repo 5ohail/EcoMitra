@@ -30,3 +30,18 @@
     width: 6.2vw;
    
 }
+
+/* Subtle glass-like card shadow */
+.saas-card {
+  @apply bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-gray-100;
+}
+
+/* Smooth rounded corners */
+.rounded-saas {
+  @apply rounded-2xl;
+}
+
+/* SaaS heading styling */
+.heading-saas {
+  @apply text-xl font-semibold tracking-tight text-gray-800;
+}

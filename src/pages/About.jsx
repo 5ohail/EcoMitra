@@ -123,21 +123,21 @@ export default function EcoMitraPitchPage() {
   {
     name: 'Vinod Gawariya',
     role: 'Team Leader | AIML Engineer',
-    img: 'https://media.licdn.com/dms/image/v2/D4E03AQE3Qv9ncY2zYg/profile-displayphoto-shrink_800_800/B4EZeQrog9HsAc-/0/1750479053262?e=1762992000&v=beta&t=bAm6B6nEXDUmxzINpRImwv1nEPcEsC9imvI7xjsK3m4',
+    img: '/Vinod.jpg',
     description: 'Vinod is the architect of our intelligence, specializing in developing and deploying advanced machine learning models to drive data-driven insights.',
     linkedin: 'https://www.linkedin.com/in/vinod-gawariya-233505331/'
   },
   {
     name: 'Sohail Ansari',
     role: 'Co-leader | Fullstack Developer',
-    img: 'https://media.licdn.com/dms/image/v2/D4D03AQH2hQzRYAlJAQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1729418868213?e=1762992000&v=beta&t=XbrpGpPzOIjJL5VQAtqAocHg1N7vi4D9ATagPeRKXt0',
+    img: 'Sohail.jpg',
     description: 'Sohail is the backbone of our platform. A versatile fullstack developer, he masters both frontend elegance and backend robustness to bring our application to life.',
     linkedin: 'https://www.linkedin.com/in/sohailansari163/'
   },
   {
     name: 'Tanisha Goyal',
     role: 'Presentation | Marketing',
-    img: 'https://media.licdn.com/dms/image/v2/D4D03AQGZcuswCuUm-Q/profile-displayphoto-crop_800_800/B4DZfaVlivGgAI-/0/1751714784282?e=1762992000&v=beta&t=y4835K9WLVubDB87l2W8vlCixK5Tc5ZCAkh1w0cok-Y',
+    img: '/Tanisha.jpg',
     description: 'Tanisha is our chief storyteller. She crafts our narrative and leads marketing efforts, brilliantly communicating our vision and value to our global audience.',
     linkedin: 'https://www.linkedin.com/in/tanisha-goyal-3bb4b6373/'
   },
@@ -151,7 +151,7 @@ export default function EcoMitraPitchPage() {
   {
     name: 'Bhavesh Dangi',
     role: 'Frontend Developer',
-    img: 'https://media.licdn.com/dms/image/v2/D5603AQHkcRV52u487g/profile-displayphoto-shrink_800_800/B56ZZHLjsgHQAg-/0/1744950936360?e=1762992000&v=beta&t=pvuPYitBY0bxZLIw69NxVDZCBj8mS10G-Gl_a7MR7D8',
+    img: '/Bhavesh.jpg',
     description: 'Bhavesh is the craftsman of our user interface. A dedicated frontend developer, he transforms designs into pixel-perfect, responsive, and engaging web experiences.',
     linkedin: 'https://www.linkedin.com/in/bhavesh-dangi-b79b8a360/'
   },
